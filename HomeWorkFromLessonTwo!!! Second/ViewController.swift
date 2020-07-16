@@ -53,9 +53,9 @@ class ViewController: UIViewController {
         blueSlider.minimumTrackTintColor = .blue
         blueSlider.maximumTrackTintColor = .systemGray6
 
-        redStringColorLabel.text =   "Red : \(redSlider.value)"
-        greenStringColorLabel.text = "Green : \(greenSlider.value)"
-        blueStringColorLabel.text =  "Blue : \(blueSlider.value)"
+        redStringColorLabel.text   =  " Red :       \(redSlider.value)"
+        greenStringColorLabel.text =  " Green :   \(greenSlider.value)"
+        blueStringColorLabel.text   = " Blue :     \(blueSlider.value)"
         
         redStringColorLabel.textColor = .white
         greenStringColorLabel.textColor = .white
@@ -65,23 +65,28 @@ class ViewController: UIViewController {
         labelShowResultBlue.text = "\(blueSlider.value)"
         labelShowResultGreen.text = "\(greenSlider.value)"
         
+        
         labelShowResultGreen.backgroundColor = .white
         labelShowResultBlue.backgroundColor = .white
         labelShowResultRed.backgroundColor = .white
         
         viewOfMixedColors.layer.cornerRadius = 10
+        
+        labelShowResultRed.layer.cornerRadius = 10
+        
+
     }
 
     @IBAction func redLabelActionSlider() {
         
-    redStringColorLabel.text = "Red :\(toDigitAfterPoint(digit:redSlider.value))"
+    redStringColorLabel.text = " Red :       \(toDigitAfterPoint(digit:redSlider.value))"
     labelShowResultRed.text = "\(toDigitAfterPoint(digit:redSlider.value))"
     mixedColorsFromSliderValue()
         
     }
     @IBAction func greenLabelActionSlider() {
         
-    greenStringColorLabel.text = "Green :\(toDigitAfterPoint(digit:greenSlider.value))"
+    greenStringColorLabel.text = " Green :   \(toDigitAfterPoint(digit:greenSlider.value))"
     labelShowResultGreen.text = "\(toDigitAfterPoint(digit:greenSlider.value))"
     mixedColorsFromSliderValue()
         
@@ -89,7 +94,7 @@ class ViewController: UIViewController {
     
     @IBAction func blueLabelActionSlider() {
         
-    blueStringColorLabel.text = "Blue : \(toDigitAfterPoint(digit:blueSlider.value))"
+    blueStringColorLabel.text = " Blue :     \(toDigitAfterPoint(digit:blueSlider.value))"
     labelShowResultBlue.text = "\(toDigitAfterPoint(digit:blueSlider.value))"
     mixedColorsFromSliderValue()
         

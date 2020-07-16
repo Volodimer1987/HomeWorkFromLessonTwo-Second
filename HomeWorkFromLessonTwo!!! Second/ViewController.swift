@@ -1,10 +1,4 @@
-
-
 import UIKit
-
-//func sliderValueToUIColor(value:Float) -> UIColor {
-//    return UIColor(value/255.0)
-//}
 
 class ViewController: UIViewController {
     @IBOutlet var viewOfMixedColors: UIView!

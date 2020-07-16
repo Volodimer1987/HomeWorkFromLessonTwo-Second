@@ -70,8 +70,6 @@ class ViewController: UIViewController {
         labelShowResultRed.backgroundColor = .white
         
         viewOfMixedColors.layer.cornerRadius = 10
-        
-
     }
 
     @IBAction func redLabelActionSlider() {

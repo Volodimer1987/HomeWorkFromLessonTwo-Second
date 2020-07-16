@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .systemBlue
+        
         redStringColorLabel.backgroundColor = view.backgroundColor
         greenStringColorLabel.backgroundColor = view.backgroundColor
         blueStringColorLabel.backgroundColor = view.backgroundColor
@@ -51,9 +53,13 @@ class ViewController: UIViewController {
         blueSlider.minimumTrackTintColor = .blue
         blueSlider.maximumTrackTintColor = .systemGray6
 
-        redStringColorLabel.text = "Red :    \(redSlider.value)"
+        redStringColorLabel.text =   "Red : \(redSlider.value)"
         greenStringColorLabel.text = "Green : \(greenSlider.value)"
-        blueStringColorLabel.text = "Blue :    \(blueSlider.value)"
+        blueStringColorLabel.text =  "Blue : \(blueSlider.value)"
+        
+        redStringColorLabel.textColor = .white
+        greenStringColorLabel.textColor = .white
+        blueStringColorLabel.textColor = .white
         
         labelShowResultRed.text = "\(redSlider.value)"
         labelShowResultBlue.text = "\(blueSlider.value)"

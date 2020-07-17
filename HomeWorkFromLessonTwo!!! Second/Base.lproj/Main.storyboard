@@ -73,17 +73,6 @@
                                     <action selector="redLabelActionSlider" destination="BYZ-38-t0r" eventType="valueChanged" id="1C8-9b-hY0"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Green: 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03N-Pw-ghq">
-                                <rect key="frame" x="0.0" y="335" width="109" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="jHV-oo-AAC"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="94" id="yDy-R3-Gha"/>
-                                    <constraint firstAttribute="width" secondItem="03N-Pw-ghq" secondAttribute="height" multiplier="83:30" constant="26" id="z00-Vy-QhB"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blue :    1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z76-6K-Vdy">
                                 <rect key="frame" x="0.0" y="383" width="109" height="30"/>
                                 <constraints>
@@ -100,6 +89,17 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="51" id="Azi-zc-4ra"/>
                                     <constraint firstAttribute="height" constant="31" id="uqF-kp-xkV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Green: 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03N-Pw-ghq">
+                                <rect key="frame" x="0.0" y="335" width="109" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jHV-oo-AAC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="94" id="yDy-R3-Gha"/>
+                                    <constraint firstAttribute="width" secondItem="03N-Pw-ghq" secondAttribute="height" multiplier="83:30" constant="26" id="z00-Vy-QhB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>

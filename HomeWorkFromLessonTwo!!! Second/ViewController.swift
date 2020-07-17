@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .systemBlue
         
         redStringColorLabel.backgroundColor = view.backgroundColor
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         redStringColorLabel.text   =  " Red :       \(redSlider.value)"
         greenStringColorLabel.text =  " Green :   \(greenSlider.value)"
         blueStringColorLabel.text   = " Blue :     \(blueSlider.value)"
-        
+
         redStringColorLabel.textColor = .white
         greenStringColorLabel.textColor = .white
         blueStringColorLabel.textColor = .white
@@ -72,9 +72,13 @@ class ViewController: UIViewController {
         
         viewOfMixedColors.layer.cornerRadius = 10
         
-        labelShowResultRed.layer.cornerRadius = 10
+        labelShowResultRed.layer.masksToBounds = true
+        labelShowResultGreen.layer.masksToBounds = true
+        labelShowResultBlue.layer.masksToBounds = true
         
-
+        labelShowResultRed.layer.cornerRadius = 6
+        labelShowResultGreen.layer.cornerRadius = 6
+        labelShowResultBlue.layer.cornerRadius = 6
     }
 
     @IBAction func redLabelActionSlider() {

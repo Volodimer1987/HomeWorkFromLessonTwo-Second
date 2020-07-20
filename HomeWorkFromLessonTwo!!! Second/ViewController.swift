@@ -1,5 +1,11 @@
 import UIKit
 
+enum Colors: String {
+    case red  = " Red :      "
+    case green = " Green :  "
+    case blue = " Blue :   "
+}
+
 class ViewController: UIViewController  {
     
     @IBOutlet var redTextFieldForAddFromScreen: UITextField!
@@ -26,9 +32,21 @@ class ViewController: UIViewController  {
         viewOfMixedColors.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: 1.0)
     }
     
+    private func configureTapGesture () {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap () {
+        print("Handle Tap was called")
+        view.endEditing(true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         redTextFieldForAddFromScreen.delegate = self
         greenTextFieldForAddFromScreen.delegate = self
         blueTextFieldForAddFromScreen.delegate = self
@@ -60,9 +78,9 @@ class ViewController: UIViewController  {
         blueSlider.minimumTrackTintColor = .blue
         blueSlider.maximumTrackTintColor = .systemGray6
 
-        redStringColorLabel.text   =  " Red :       \(redSlider.value)"
-        greenStringColorLabel.text =  " Green :   \(greenSlider.value)"
-        blueStringColorLabel.text   = " Blue :     \(blueSlider.value)"
+        redStringColorLabel.text   = Colors.red.rawValue + "\(redSlider.value)"
+        greenStringColorLabel.text =  Colors.green.rawValue + "\(greenSlider.value)"
+        blueStringColorLabel.text   = Colors.blue.rawValue + "  \(blueSlider.value)"
 
         redStringColorLabel.textColor = .white
         greenStringColorLabel.textColor = .white
@@ -78,21 +96,23 @@ class ViewController: UIViewController  {
         redTextFieldForAddFromScreen.backgroundColor = .white
         
         viewOfMixedColors.layer.cornerRadius = 10
+        
+        configureTapGesture()
+
     }
 
     @IBAction func redLabelActionSlider() {
         
-    redStringColorLabel.text = " Red :       \(twoDigitAfterPoint(digit:redSlider.value))"
+    redStringColorLabel.text = Colors.red.rawValue + "\(twoDigitAfterPoint(digit:redSlider.value))"
     redTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit:redSlider.value))"
     mixedColorsFromSliderValue()
         redTextFieldForAddFromScreen.text = String(twoDigitAfterPoint(digit: redSlider.value))
-    
         
     }
     
     @IBAction func greenLabelActionSlider() {
         
-    greenStringColorLabel.text = " Green :   \(twoDigitAfterPoint(digit:greenSlider.value))"
+    greenStringColorLabel.text = Colors.green.rawValue + "\(twoDigitAfterPoint(digit:greenSlider.value))"
     greenTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit:greenSlider.value))"
     mixedColorsFromSliderValue()
         
@@ -100,9 +120,26 @@ class ViewController: UIViewController  {
     
     @IBAction func blueLabelActionSlider() {
         
-    blueStringColorLabel.text = " Blue :     \(twoDigitAfterPoint(digit:blueSlider.value))"
+    blueStringColorLabel.text = Colors.blue.rawValue +  "\(twoDigitAfterPoint(digit:blueSlider.value))"
     blueTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit:blueSlider.value))"
     mixedColorsFromSliderValue()
+        
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let defoultValue:Float = 0.0
+        
+        redSlider.value = Float(redTextFieldForAddFromScreen.text!) ?? defoultValue
+        redStringColorLabel.text = Colors.red.rawValue +     "\(twoDigitAfterPoint(digit:Float(redTextFieldForAddFromScreen.text!) ?? defoultValue))"
+        
+        greenSlider.value = Float(greenTextFieldForAddFromScreen.text!) ?? defoultValue
+        greenStringColorLabel.text = Colors.green.rawValue +     "\(twoDigitAfterPoint(digit:Float(greenTextFieldForAddFromScreen.text!) ?? defoultValue))"
+        
+        blueSlider.value = Float(blueTextFieldForAddFromScreen.text!) ?? defoultValue
+        blueStringColorLabel.text = Colors.blue.rawValue +     "\(twoDigitAfterPoint(digit:Float(blueTextFieldForAddFromScreen.text!) ?? defoultValue))"
+        
+        mixedColorsFromSliderValue()
+        
         
     }
 }
@@ -113,8 +150,6 @@ extension UIViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-
-    
 }
 
 

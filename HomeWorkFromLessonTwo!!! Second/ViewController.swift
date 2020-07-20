@@ -1,6 +1,10 @@
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate  {
+class ViewController: UIViewController  {
+    
+    @IBOutlet var redTextFieldForAddFromScreen: UITextField!
+    @IBOutlet var greenTextFieldForAddFromScreen: UITextField!
+    @IBOutlet var blueTextFieldForAddFromScreen: UITextField!
     
     @IBOutlet var viewOfMixedColors: UIView!
     
@@ -12,12 +16,10 @@ class ViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
     
-    @IBOutlet var labelShowResultRed: UILabel!
-    @IBOutlet var labelShowResultGreen: UILabel!
-    @IBOutlet var labelShowResultBlue: UILabel!
-    
+
     private func twoDigitAfterPoint(digit:Float) -> Float {
         return Float(round(100*digit)/100)
+        
     }
     
     private func mixedColorsFromSliderValue () {
@@ -26,7 +28,10 @@ class ViewController: UIViewController, UITextFieldDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        redTextFieldForAddFromScreen.delegate = self
+        greenTextFieldForAddFromScreen.delegate = self
+        blueTextFieldForAddFromScreen.delegate = self
         
         view.backgroundColor = .systemBlue
         
@@ -63,40 +68,32 @@ class ViewController: UIViewController, UITextFieldDelegate  {
         greenStringColorLabel.textColor = .white
         blueStringColorLabel.textColor = .white
         
-        labelShowResultRed.text = "\(redSlider.value)"
-        labelShowResultBlue.text = "\(blueSlider.value)"
-        labelShowResultGreen.text = "\(greenSlider.value)"
+        redTextFieldForAddFromScreen.text = "\(redSlider.value)"
+        blueTextFieldForAddFromScreen.text = "\(blueSlider.value)"
+        greenTextFieldForAddFromScreen.text = "\(greenSlider.value)"
         
         
-        labelShowResultGreen.backgroundColor = .white
-        labelShowResultBlue.backgroundColor = .white
-        labelShowResultRed.backgroundColor = .white
+        greenTextFieldForAddFromScreen.backgroundColor = .white
+        blueTextFieldForAddFromScreen.backgroundColor = .white
+        redTextFieldForAddFromScreen.backgroundColor = .white
         
         viewOfMixedColors.layer.cornerRadius = 10
-        
-        labelShowResultRed.layer.masksToBounds = true
-        labelShowResultGreen.layer.masksToBounds = true
-        labelShowResultBlue.layer.masksToBounds = true
-        
-        labelShowResultRed.layer.cornerRadius = 6
-        labelShowResultGreen.layer.cornerRadius = 6
-        labelShowResultBlue.layer.cornerRadius = 6
-        
-        
     }
 
     @IBAction func redLabelActionSlider() {
         
     redStringColorLabel.text = " Red :       \(twoDigitAfterPoint(digit:redSlider.value))"
-    labelShowResultRed.text = "\(twoDigitAfterPoint(digit:redSlider.value))"
+    redTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit:redSlider.value))"
     mixedColorsFromSliderValue()
+        redTextFieldForAddFromScreen.text = String(twoDigitAfterPoint(digit: redSlider.value))
+    
         
     }
     
     @IBAction func greenLabelActionSlider() {
         
     greenStringColorLabel.text = " Green :   \(twoDigitAfterPoint(digit:greenSlider.value))"
-    labelShowResultGreen.text = "\(twoDigitAfterPoint(digit:greenSlider.value))"
+    greenTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit:greenSlider.value))"
     mixedColorsFromSliderValue()
         
     }
@@ -104,11 +101,20 @@ class ViewController: UIViewController, UITextFieldDelegate  {
     @IBAction func blueLabelActionSlider() {
         
     blueStringColorLabel.text = " Blue :     \(twoDigitAfterPoint(digit:blueSlider.value))"
-    labelShowResultBlue.text = "\(twoDigitAfterPoint(digit:blueSlider.value))"
+    blueTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit:blueSlider.value))"
     mixedColorsFromSliderValue()
         
     }
 }
 
+extension UIViewController: UITextFieldDelegate {
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    
+}
 
 

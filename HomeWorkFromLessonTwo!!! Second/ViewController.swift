@@ -57,15 +57,15 @@ class ViewController: UIViewController  {
         greenStringColorLabel.backgroundColor = view.backgroundColor
         blueStringColorLabel.backgroundColor = view.backgroundColor
         
-        redSlider.value = 0.5
+        redSlider.value = 0.0
         redSlider.minimumValue = 0
         redSlider.maximumValue = 1
         
-        greenSlider.value = 0.5
+        greenSlider.value = 0.0
         greenSlider.minimumValue = 0
         greenSlider.maximumValue = 1
         
-        blueSlider.value = 0.5
+        blueSlider.value = 0.0
         blueSlider.minimumValue = 0
         blueSlider.maximumValue = 1
         
@@ -105,9 +105,9 @@ class ViewController: UIViewController  {
         
     redStringColorLabel.text = Colors.red.rawValue + "\(twoDigitAfterPoint(digit:redSlider.value))"
     redTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit:redSlider.value))"
+    redTextFieldForAddFromScreen.text = String(twoDigitAfterPoint(digit: redSlider.value))
     mixedColorsFromSliderValue()
-        redTextFieldForAddFromScreen.text = String(twoDigitAfterPoint(digit: redSlider.value))
-        
+
     }
     
     @IBAction func greenLabelActionSlider() {
@@ -124,23 +124,56 @@ class ViewController: UIViewController  {
     blueTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit:blueSlider.value))"
     mixedColorsFromSliderValue()
         
+    
+        
     }
     
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let defoultValue:Float = 0.0
-        
-        redSlider.value = Float(redTextFieldForAddFromScreen.text!) ?? defoultValue
-        redStringColorLabel.text = Colors.red.rawValue +     "\(twoDigitAfterPoint(digit:Float(redTextFieldForAddFromScreen.text!) ?? defoultValue))"
-        
-        greenSlider.value = Float(greenTextFieldForAddFromScreen.text!) ?? defoultValue
-        greenStringColorLabel.text = Colors.green.rawValue +     "\(twoDigitAfterPoint(digit:Float(greenTextFieldForAddFromScreen.text!) ?? defoultValue))"
-        
-        blueSlider.value = Float(blueTextFieldForAddFromScreen.text!) ?? defoultValue
-        blueStringColorLabel.text = Colors.blue.rawValue +     "\(twoDigitAfterPoint(digit:Float(blueTextFieldForAddFromScreen.text!) ?? defoultValue))"
-        
+
+        switch textField {
+            
+        case redTextFieldForAddFromScreen:
+            
+            if redTextFieldForAddFromScreen.text == "" {redTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: redSlider.value))" ; return }
+            
+              redTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: lessOrMoreFloat(inside: textField)))"
+              redSlider.value = Float(redTextFieldForAddFromScreen.text!) ?? 0.0
+              redStringColorLabel.text = Colors.red.rawValue +     "\(twoDigitAfterPoint(digit:Float(redTextFieldForAddFromScreen.text!) ?? 0.0))"
+            
+        case greenTextFieldForAddFromScreen:
+
+              if greenTextFieldForAddFromScreen.text == "" {greenTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: greenSlider.value))" ; return }
+
+             greenTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: lessOrMoreFloat(inside: textField)))"
+             greenSlider.value = Float(greenTextFieldForAddFromScreen.text!) ?? 0.0
+             greenStringColorLabel.text = Colors.green.rawValue +     "\(twoDigitAfterPoint(digit:Float(greenTextFieldForAddFromScreen.text!) ?? 0.0))"
+            
+        case blueTextFieldForAddFromScreen :
+            
+              if blueTextFieldForAddFromScreen.text == "" {blueTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: blueSlider.value))" ; return }
+            
+             blueTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: lessOrMoreFloat(inside: blueTextFieldForAddFromScreen)))"
+             blueSlider.value = Float(blueTextFieldForAddFromScreen.text!) ?? 0.0
+             blueStringColorLabel.text = Colors.blue.rawValue +     "\(twoDigitAfterPoint(digit:Float(blueTextFieldForAddFromScreen.text!) ?? 0.0))"
+
+        default:break
+            
+        }
+
         mixedColorsFromSliderValue()
+    }
+    
+    func lessOrMoreFloat(inside:UITextField) -> Float {
+        var backBool:Float = 0.0
+        if let a = Float(inside.text!)  {
+            if  a >= 0 && a <= 1 { backBool = a
+                
+            } else { showAlert(title: "Overload", message: "Change value")}
+            
+        } else { showAlert(title: "This is not digits ", message: "Please enter value from 0 to 1")}
         
-        
+         return backBool
     }
 }
 
@@ -149,6 +182,21 @@ extension UIViewController: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension ViewController {
+
+    private func showAlert(title:String,message:String ) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "ok", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+     
     }
 }
 

@@ -137,7 +137,7 @@ class ViewController: UIViewController  {
             
             if redTextFieldForAddFromScreen.text == "" {redTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: redSlider.value))" ; return }
             
-              redTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: lessOrMoreFloat(inside: textField)))"
+            redTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: lessOrMoreFloat(inside: textField) ?? redSlider.value))"
               redSlider.value = Float(redTextFieldForAddFromScreen.text!) ?? 0.0
               redStringColorLabel.text = Colors.red.rawValue +     "\(twoDigitAfterPoint(digit:Float(redTextFieldForAddFromScreen.text!) ?? 0.0))"
             
@@ -145,7 +145,7 @@ class ViewController: UIViewController  {
 
               if greenTextFieldForAddFromScreen.text == "" {greenTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: greenSlider.value))" ; return }
 
-             greenTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: lessOrMoreFloat(inside: textField)))"
+              greenTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: lessOrMoreFloat(inside: textField) ?? greenSlider.value))"
              greenSlider.value = Float(greenTextFieldForAddFromScreen.text!) ?? 0.0
              greenStringColorLabel.text = Colors.green.rawValue +     "\(twoDigitAfterPoint(digit:Float(greenTextFieldForAddFromScreen.text!) ?? 0.0))"
             
@@ -153,7 +153,7 @@ class ViewController: UIViewController  {
             
               if blueTextFieldForAddFromScreen.text == "" {blueTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: blueSlider.value))" ; return }
             
-             blueTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: lessOrMoreFloat(inside: blueTextFieldForAddFromScreen)))"
+              blueTextFieldForAddFromScreen.text = "\(twoDigitAfterPoint(digit: lessOrMoreFloat(inside: blueTextFieldForAddFromScreen) ?? blueSlider.value))"
              blueSlider.value = Float(blueTextFieldForAddFromScreen.text!) ?? 0.0
              blueStringColorLabel.text = Colors.blue.rawValue +     "\(twoDigitAfterPoint(digit:Float(blueTextFieldForAddFromScreen.text!) ?? 0.0))"
 
@@ -164,14 +164,16 @@ class ViewController: UIViewController  {
         mixedColorsFromSliderValue()
     }
     
-    func lessOrMoreFloat(inside:UITextField) -> Float {
-        var backBool:Float = 0.0
+    func lessOrMoreFloat(inside:UITextField) -> Float? {
+        var backBool:Float?
         if let a = Float(inside.text!)  {
             if  a >= 0 && a <= 1 { backBool = a
                 
-            } else { showAlert(title: "Overload", message: "Change value")}
+            } else { showAlert(title: " Limit error", message: "Min - 0,0 , Max - 1,0")}
             
-        } else { showAlert(title: "This is not digits ", message: "Please enter value from 0 to 1")}
+        } else {
+            showAlert(title: "Error", message: "Enter please only digits")
+        }
         
          return backBool
     }

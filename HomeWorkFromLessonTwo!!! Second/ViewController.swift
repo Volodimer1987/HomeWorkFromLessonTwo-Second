@@ -6,7 +6,7 @@ enum Colors: String {
     case blue = " Blue :   "
 }
 
-class ViewController: UIViewController  {
+class ViewController: UIViewController,UITextFieldDelegate  {
     
     @IBOutlet var redTextFieldForAddFromScreen: UITextField!
     @IBOutlet var greenTextFieldForAddFromScreen: UITextField!
@@ -128,6 +128,11 @@ class ViewController: UIViewController  {
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
 
@@ -169,7 +174,7 @@ class ViewController: UIViewController  {
         if let a = Float(inside.text!)  {
             if  a >= 0 && a <= 1 { backBool = a
                 
-            } else { showAlert(title: " Limit error", message: "Min - 0,0 , Max - 1,0")}
+            } else { showAlert(title: " Limit error", message: "Min: 0 , Max: 1")}
             
         } else {
             showAlert(title: "Error", message: "Enter please only digits")
@@ -179,13 +184,6 @@ class ViewController: UIViewController  {
     }
 }
 
-extension UIViewController: UITextFieldDelegate {
-    
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}
 
 extension ViewController {
 

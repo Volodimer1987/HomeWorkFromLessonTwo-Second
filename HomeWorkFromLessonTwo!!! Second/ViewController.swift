@@ -73,7 +73,7 @@ class ViewController: UIViewController  {
     }
     
 
-    public func twoDigitAfterPoint(digit:Float) -> Float {
+    private func twoDigitAfterPoint(digit:Float) -> Float {
         return Float(round(100*digit)/100)
         
     }
@@ -120,12 +120,15 @@ class ViewController: UIViewController  {
         case 0:
             redStringColorLabel.text = Colors.red.rawValue + "\(string(from: sender))"
             redTextFieldForAddFromScreen.text = string(from: sender)
+            
         case 1:
             greenStringColorLabel.text = Colors.green.rawValue + "\(string(from: sender))"
             greenTextFieldForAddFromScreen.text = string(from: sender)
+            
         case 2:
             blueStringColorLabel.text = Colors.blue.rawValue + "\(string(from: sender))"
             blueTextFieldForAddFromScreen.text = string(from: sender)
+            
         default:
             break
         }
@@ -134,7 +137,7 @@ class ViewController: UIViewController  {
     }
     
 
-    func lessOrMoreFloat(inside:UITextField) -> Float? {
+  private  func lessOrMoreFloat(inside:UITextField) -> Float? {
         var backBool:Float?
         if let a = Float(inside.text!)  {
             if  a >= 0 && a <= 1 { backBool = a
@@ -156,7 +159,7 @@ extension ViewController: UITextFieldDelegate {
         return true
     }
     
-func textFieldDidEndEditing(_ textField: UITextField) {
+ func textFieldDidEndEditing(_ textField: UITextField) {
 
 
     switch textField.tag {
